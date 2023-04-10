@@ -3,14 +3,14 @@ package com.megapet.backendmegapet.shelter.resource;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-public class UpdateUserResource {
-    private Long id;
-
+@With
+@NoArgsConstructor
+@AllArgsConstructor
+public class CreateShelterResource {
     @NotNull
     @NotBlank
     @Size(max = 400)
