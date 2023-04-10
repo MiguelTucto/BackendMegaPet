@@ -7,9 +7,9 @@ spring:
   #    path: /h2-console
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://sa-east-1.69627195-e543-442f-9f41-3837cf3953ce.aws.ybdb.io:5433/yugabyte
-    username: admin
-    password: 1mmENnYs-01E1DY69s_P3UYfSVjAWD
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     database: postgresql
     hibernate:
