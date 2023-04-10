@@ -33,12 +33,12 @@ public class Pet implements Serializable {
     @NotBlank
     @NotNull
     @Size(max = 200)
-    private String dateAppearing;
+    private String datePosted;
 
     @NotBlank
     @NotNull
     @Size(max = 200)
-    private String category;
+    private String dateAdopted;
 
     private int likes;
 
