@@ -1,27 +1,28 @@
-server:
-  port: 4020
+#server:
+#  port: 4020
 spring:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  #h2:
+  #  console:
+  #    enabled: true
+  #    path: /h2-console
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:~/data/megapet
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://sa-east-1.69627195-e543-442f-9f41-3837cf3953ce.aws.ybdb.io:5433/yugabyte
     username: admin
-    password: admin
+    password: 1mmENnYs-01E1DY69s_P3UYfSVjAWD
   jpa:
-    database: h2
+    database: postgresql
     hibernate:
       ddl-auto: update
     show-sql: true
-    database-platform: org.hibernate.dialect.H2Dialect
+  #  database-platform: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
         globally_quoted_identifiers: true
         show_sql: true
         use_sql_comments: false
         format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 springdoc:
   swagger-ui:
     path: /swagger-ui
