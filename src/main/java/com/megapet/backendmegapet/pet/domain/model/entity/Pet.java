@@ -7,9 +7,17 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 
 import java.io.Serializable;
 
+@Getter
+@Setter
+@With
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "pets")
 public class Pet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,12 +55,12 @@ public class Pet implements Serializable {
     @Size(max = 200)
     private String typeOfPet;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adopter_id", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private Adopter adopter;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shelter_id", referencedColumnName = "id", nullable = false)
     @JsonIgnore
     private Shelter shelter;

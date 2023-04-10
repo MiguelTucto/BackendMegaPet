@@ -1,27 +1,16 @@
-package com.megapet.backendmegapet.adopter.domain.model.entity;
+package com.megapet.backendmegapet.adopter.resource;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.megapet.backendmegapet.user.domain.model.entity.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.io.Serializable;
-
 @Getter
 @Setter
-@With
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "adopters")
-public class Adopter implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@With
+public class CreateAdopterResource {
     @NotBlank
     @NotNull
     @Size(max = 2000)
@@ -45,9 +34,4 @@ public class Adopter implements Serializable {
     private String anotherPet;
 
     private int rank;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    @JsonIgnore
-    private User user;
 }

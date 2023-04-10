@@ -1,23 +1,14 @@
-package com.megapet.backendmegapet.user.domain.model.entity;
+package com.megapet.backendmegapet.user.resource;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
-
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@With
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "users")
-public class User implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UpdateUserResource {
     private Long id;
 
     @NotNull
@@ -46,5 +37,4 @@ public class User implements Serializable {
     @NotBlank
     @Size(max = 50)
     private String password;
-
 }
