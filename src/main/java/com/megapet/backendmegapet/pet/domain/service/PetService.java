@@ -14,7 +14,8 @@ public interface PetService {
     Page<Pet> getAllPetsByAdopterId(Long adopterId, Pageable pageable);
     Page<Pet> getAllPetsByShelterId(Long shelterId, Pageable pageable);
     Pet getById(Long petId);
-    Pet create(Pet pet);
+    Pet createPetByAdopter(Pet pet, Long adopterId);
+    Pet createPetByShelter(Pet pet, Long shelterId);
     Pet update(Long petId, Pet request);
     ResponseEntity<?> delete(Long petId);
 }

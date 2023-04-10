@@ -11,7 +11,7 @@ public interface AdopterService {
     List<Adopter> getAll();
     Page<Adopter> getAll(Pageable pageable);
     Adopter getById(Long adopterId);
-    Adopter create(Adopter adopter);
+    Adopter create(Adopter adopter, Long userId);
     Adopter update(Long adopterId, Adopter request);
     ResponseEntity<?> delete(Long adopterId);
 }

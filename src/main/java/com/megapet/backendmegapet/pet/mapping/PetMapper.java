@@ -25,4 +25,5 @@ public class PetMapper implements Serializable {
 
     public Pet toModel(CreatePetResource resource) { return mapper.map(resource, Pet.class); }
     public Pet toModel(UpdatePetResource resource) { return mapper.map(resource, Pet.class); }
+
 }

@@ -5,6 +5,8 @@ import com.megapet.backendmegapet.adopter.domain.persistence.AdopterRepository;
 import com.megapet.backendmegapet.adopter.domain.service.AdopterService;
 import com.megapet.backendmegapet.shared.exception.ResourceNotFoundException;
 import com.megapet.backendmegapet.shared.exception.ResourceValidationException;
+import com.megapet.backendmegapet.user.domain.model.entity.User;
+import com.megapet.backendmegapet.user.domain.persistence.UserRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
@@ -19,10 +21,12 @@ import java.util.Set;
 public class AdopterServiceImpl implements AdopterService {
     private static final String ENTITY = "Adopter";
     private final AdopterRepository adopterRepository;
+    private final UserRepository userRepository;
     private final Validator validator;
 
-    public AdopterServiceImpl(AdopterRepository adopterRepository, Validator validator) {
+    public AdopterServiceImpl(AdopterRepository adopterRepository, UserRepository userRepository, Validator validator) {
         this.adopterRepository = adopterRepository;
+        this.userRepository = userRepository;
         this.validator = validator;
     }
 
@@ -44,10 +48,16 @@ public class AdopterServiceImpl implements AdopterService {
     }
 
     @Override
-    public Adopter create(Adopter adopter) {
+    public Adopter create(Adopter adopter, Long userId) {
         Set<ConstraintViolation<Adopter>> violations = validator.validate(adopter);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", userId));
+
+        adopter.setUser(user);
+
         return adopterRepository.save(adopter);
     }
 

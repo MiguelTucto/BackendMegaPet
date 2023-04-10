@@ -5,6 +5,8 @@ import com.megapet.backendmegapet.shared.exception.ResourceValidationException;
 import com.megapet.backendmegapet.shelter.domain.model.entity.Shelter;
 import com.megapet.backendmegapet.shelter.domain.persistence.ShelterRepository;
 import com.megapet.backendmegapet.shelter.domain.service.ShelterService;
+import com.megapet.backendmegapet.user.domain.model.entity.User;
+import com.megapet.backendmegapet.user.domain.persistence.UserRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.data.domain.Page;
@@ -19,10 +21,12 @@ import java.util.Set;
 public class ShelterServiceImpl implements ShelterService {
     private static final String ENTITY = "Shelter";
     private final ShelterRepository shelterRepository;
+    private final UserRepository userRepository;
     private final Validator validator;
 
-    public ShelterServiceImpl(ShelterRepository shelterRepository, Validator validator) {
+    public ShelterServiceImpl(ShelterRepository shelterRepository, UserRepository userRepository, Validator validator) {
         this.shelterRepository = shelterRepository;
+        this.userRepository = userRepository;
         this.validator = validator;
     }
 
@@ -44,10 +48,16 @@ public class ShelterServiceImpl implements ShelterService {
     }
 
     @Override
-    public Shelter create(Shelter shelter) {
+    public Shelter create(Shelter shelter, Long userId) {
         Set<ConstraintViolation<Shelter>> violations = validator.validate(shelter);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", userId));
+
+        shelter.setUser(user);
+
         return shelterRepository.save(shelter);
     }
 
