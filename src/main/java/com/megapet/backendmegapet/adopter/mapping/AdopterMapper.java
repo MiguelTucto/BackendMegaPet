@@ -3,8 +3,8 @@ package com.megapet.backendmegapet.adopter.mapping;
 import com.megapet.backendmegapet.adopter.domain.model.entity.Adopter;
 import com.megapet.backendmegapet.adopter.resource.AdopterResource;
 import com.megapet.backendmegapet.adopter.resource.CreateAdopterResource;
+import com.megapet.backendmegapet.adopter.resource.UpdateAdopterResource;
 import com.megapet.backendmegapet.shared.mapping.EnhancedModelMapper;
-import com.megapet.backendmegapet.user.resource.UpdateUserResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,7 +24,7 @@ public class AdopterMapper implements Serializable {
     }
 
     public Adopter toModel(CreateAdopterResource resource) { return mapper.map(resource, Adopter.class); }
-    public Adopter toModel(UpdateUserResource resource) {
+    public Adopter toModel(UpdateAdopterResource resource) {
         return mapper.map(resource, Adopter.class);
     }
 }

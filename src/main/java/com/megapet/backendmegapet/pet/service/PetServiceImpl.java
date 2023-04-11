@@ -1,6 +1,5 @@
 package com.megapet.backendmegapet.pet.service;
 
-import com.megapet.backendmegapet.adopter.domain.persistence.AdopterRepository;
 import com.megapet.backendmegapet.pet.domain.model.entity.Pet;
 import com.megapet.backendmegapet.pet.domain.persistence.PetRepository;
 import com.megapet.backendmegapet.pet.domain.service.PetService;
@@ -22,13 +21,11 @@ import java.util.Set;
 public class PetServiceImpl implements PetService {
     private static final String ENTITY = "Pet";
     private final PetRepository petRepository;
-    private final AdopterRepository adopterRepository;
     private final ShelterRepository shelterRepository;
     private final Validator validator;
 
-    public PetServiceImpl(PetRepository petRepository, AdopterRepository adopterRepository, ShelterRepository shelterRepository, Validator validator) {
+    public PetServiceImpl(PetRepository petRepository, ShelterRepository shelterRepository, Validator validator) {
         this.petRepository = petRepository;
-        this.adopterRepository = adopterRepository;
         this.shelterRepository = shelterRepository;
         this.validator = validator;
     }

@@ -8,6 +8,7 @@ import com.megapet.backendmegapet.pet.resource.UpdatePetResource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,7 +28,7 @@ public class PetsController {
         return mapper.modelListPage(petService.getAll(), pageable);
     }
 
-    @GetMapping({"shelter/{shelterId}"})
+    @GetMapping("shelter/{shelterId}")
     public Page<PetResource> getAllPetsByShelterId(@PathVariable Long shelterId, Pageable pageable) {
         return petService.getAllPetsByShelterId(shelterId, pageable).map(mapper::toResource);
     }
@@ -51,4 +52,7 @@ public class PetsController {
     public PetResource getPetById(@PathVariable Long petId) {
         return mapper.toResource(petService.getById(petId));
     }
+
+    @DeleteMapping("{petId}")
+    public ResponseEntity<?> deletePet (@PathVariable Long petId) { return petService.delete(petId); }
 }

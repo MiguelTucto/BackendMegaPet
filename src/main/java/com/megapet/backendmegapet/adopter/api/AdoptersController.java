@@ -4,7 +4,7 @@ import com.megapet.backendmegapet.adopter.domain.service.AdopterService;
 import com.megapet.backendmegapet.adopter.mapping.AdopterMapper;
 import com.megapet.backendmegapet.adopter.resource.AdopterResource;
 import com.megapet.backendmegapet.adopter.resource.CreateAdopterResource;
-import com.megapet.backendmegapet.user.resource.UpdateUserResource;
+import com.megapet.backendmegapet.adopter.resource.UpdateAdopterResource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +39,7 @@ public class AdoptersController {
     }
 
     @PutMapping("{adopterId}")
-    public AdopterResource updateAdopter(@PathVariable Long adopterId, @RequestBody UpdateUserResource resource) {
+    public AdopterResource updateAdopter(@PathVariable Long adopterId, @RequestBody UpdateAdopterResource resource) {
         return mapper.toResource(adopterService.update(adopterId, mapper.toModel(resource)));
     }
 
