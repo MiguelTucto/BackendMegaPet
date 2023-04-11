@@ -7,9 +7,9 @@ spring:
   #    path: /h2-console
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://containers-us-west-175.railway.app:7087/railway
+    url: jdbc:postgresql://containers-us-west-155.railway.app:5448/railway
     username: postgres
-    password: xp0FrixBfQYjcMrbkdsm
+    password: w9865COL88D7Mpqae8eu
   jpa:
     database: postgresql
     hibernate:
