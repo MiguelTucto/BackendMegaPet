@@ -41,6 +41,11 @@ public class AdopterServiceImpl implements AdopterService {
     }
 
     @Override
+    public Adopter getAdopterByUserId(Long userId) {
+        return  adopterRepository.findAdopterByUserId(userId);
+    }
+
+    @Override
     public Adopter getById(Long adopterId) {
         return adopterRepository
                 .findById(adopterId)

@@ -10,6 +10,7 @@ import java.util.List;
 public interface AdopterService {
     List<Adopter> getAll();
     Page<Adopter> getAll(Pageable pageable);
+    Adopter getAdopterByUserId(Long userId);
     Adopter getById(Long adopterId);
     Adopter create(Adopter adopter, Long userId);
     Adopter update(Long adopterId, Adopter request);

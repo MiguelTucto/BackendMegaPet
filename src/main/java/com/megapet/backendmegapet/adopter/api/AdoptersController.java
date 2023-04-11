@@ -33,6 +33,11 @@ public class AdoptersController {
         return mapper.toResource(adopterService.getById(adopterId));
     }
 
+    @GetMapping("user/{userId}")
+    public AdopterResource getAdopterByUserId(@PathVariable Long userId) {
+        return mapper.toResource(adopterService.getAdopterByUserId(userId));
+    }
+
     @PostMapping("user/{userId}")
     public AdopterResource createAdopter(@Valid @RequestBody CreateAdopterResource resource, @Valid @PathVariable Long userId) {
         return mapper.toResource(adopterService.create(mapper.toModel(resource), userId));
