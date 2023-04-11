@@ -1,7 +1,6 @@
 package com.megapet.backendmegapet.pet.domain.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.megapet.backendmegapet.adopter.domain.model.entity.Adopter;
 import com.megapet.backendmegapet.shelter.domain.model.entity.Shelter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -54,11 +53,6 @@ public class Pet implements Serializable {
     @NotNull
     @Size(max = 200)
     private String typeOfPet;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adopter_id", referencedColumnName = "id", nullable = false)
-    @JsonIgnore
-    private Adopter adopter;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shelter_id", referencedColumnName = "id", nullable = false)

@@ -32,20 +32,11 @@ public class PetsController {
         return petService.getAllPetsByShelterId(shelterId, pageable).map(mapper::toResource);
     }
 
-    @GetMapping({"adopter/{adopterId}"})
-    public Page<PetResource> getAllPetsByAdopterId(@PathVariable Long adopterId, Pageable pageable) {
-        return petService.getAllPetsByAdopterId(adopterId, pageable).map(mapper::toResource);
-    }
-
     @GetMapping("{type}")
     public Page<PetResource> getAllPetsByType(@PathVariable String type, Pageable pageable) {
         return petService.getAllPetsByType(type, pageable).map(mapper::toResource);
     }
 
-    @PostMapping("adopter/{adopterId}")
-    public PetResource createPetByAdopter(@Valid @RequestBody CreatePetResource resource, @PathVariable Long adopterId) {
-        return mapper.toResource(petService.createPetByAdopter(mapper.toModel(resource), adopterId));
-    }
 
     @PostMapping("shelter/{shelterId}")
     public PetResource createPetByShelter(@Valid @RequestBody CreatePetResource resource, @PathVariable Long shelterId) {

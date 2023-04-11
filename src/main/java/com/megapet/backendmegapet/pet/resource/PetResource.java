@@ -16,6 +16,5 @@ public class PetResource {
     private String dateAdopted;
     private int likes;
     private String typeOfPet;
-    private Long adopterId;
     private Long shelterId;
 }

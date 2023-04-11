@@ -1,6 +1,5 @@
 package com.megapet.backendmegapet.pet.service;
 
-import com.megapet.backendmegapet.adopter.domain.model.entity.Adopter;
 import com.megapet.backendmegapet.adopter.domain.persistence.AdopterRepository;
 import com.megapet.backendmegapet.pet.domain.model.entity.Pet;
 import com.megapet.backendmegapet.pet.domain.persistence.PetRepository;
@@ -50,11 +49,6 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Page<Pet> getAllPetsByAdopterId(Long adopterId, Pageable pageable) {
-        return petRepository.findPetsByAdopterId(adopterId, pageable);
-    }
-
-    @Override
     public Page<Pet> getAllPetsByShelterId(Long shelterId, Pageable pageable) {
         return petRepository.findPetsByShelterId(shelterId, pageable);
     }
@@ -64,20 +58,6 @@ public class PetServiceImpl implements PetService {
         return petRepository
                 .findById(petId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, petId));
-    }
-
-    @Override
-    public Pet createPetByAdopter(Pet pet, Long adopterId) {
-        Set<ConstraintViolation<Pet>> violations = validator.validate(pet);
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-
-        Adopter adopter = adopterRepository.findById(adopterId)
-                .orElseThrow(() -> new ResourceNotFoundException("Adopter", adopterId));
-
-        pet.setAdopter(adopter);
-
-        return petRepository.save(pet);
     }
 
     @Override
